@@ -1,0 +1,29 @@
+---
+- hosts: nodes
+  become: yes
+
+  tasks:
+  - name: Install httpd package
+    yum:
+      name: httpd
+      state: latest
+    tags: apache
+
+  - name: Create user
+    user:
+       name: monadm
+       state: present
+    tags: user_add
+
+
+  - name: Restart apache service
+    service:
+          name: httpd
+          state: restarted
+          enabled: yes
+    tags: service_start
+
+
+
+
+

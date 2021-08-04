@@ -1,0 +1,12 @@
+---
+- hosts: nodes
+  vars:
+     - var1: Har Har Mahadev
+
+  tasks:
+  - name: This is Jinja2 template demo
+    template:
+        src: example.j2
+        dest: /tmp/result.txt
+
+  

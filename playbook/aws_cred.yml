@@ -1,0 +1,6 @@
+---
+access_key: AKIASDMCD2R3FXXNRI4G
+secret_key: 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
+ec2_id: i-0e1c456a5c29ee248
+name_key: amit-ec2-key-pair
+vpc: vpc-4d1c7630

@@ -1,0 +1,15 @@
+---
+- hosts: nodes
+  become: yes
+  
+  tasks:
+  - name: Search .log files
+    find:
+       path: /mnt/ansible
+       patterns: "*.log"
+       recurse: yes
+    register: output
+
+
+  - debug:
+        msg: "{{ output.files | map(attribute='path') | list }}"

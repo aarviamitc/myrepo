@@ -1,0 +1,12 @@
+---
+- name: Install the apache package
+  yum:
+    name: "{{ pkg }}"
+    state: latest
+
+
+- name: Configure the html file
+  template:
+        src: index_html.j2
+        dest: /var/www/html/index.html
+  notify: start Apache 

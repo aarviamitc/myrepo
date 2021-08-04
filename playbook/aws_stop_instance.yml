@@ -1,0 +1,16 @@
+---
+- name: Stop aws ec2 instance
+  hosts: localhost
+  connection: local
+  vars_files:
+    - aws_cred.yml
+
+  tasks:
+  - name: Stop the instance
+    ec2:
+          aws_access_key: "{{ access_key }}"
+          aws_secret_key: "{{ secret_key }}"
+          instance_id: "{{ ec2_id }}"
+          region: us-east-1
+          state: stopped
+          wait: true

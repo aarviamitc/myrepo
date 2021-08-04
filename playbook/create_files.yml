@@ -1,0 +1,12 @@
+---
+- hosts: nodes
+  become: yes
+  vars_files:
+          - file_vars.yml
+
+  tasks:
+  - name: Create .log files
+    file:
+      path: /mnt/ansible/{{item}}
+      state: touch
+    loop: "{{file_name}}"

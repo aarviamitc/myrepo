@@ -1,0 +1,29 @@
+---
+- name: Configure apache usign jinj2 template
+  hosts: nodes
+  become: yes
+  vars:
+    apache: "{{ pkg }}"
+
+  tasks:
+  - name: Install the apache package
+    yum:
+       name: "{{ pkg }}"
+       state: latest
+  
+  - name: Configure index.html file
+    template:
+       src: index_html.j2
+       dest: /var/www/html/index.html
+    notify: Restart apache
+
+  handlers:
+  - name: Restart apache
+    service:
+        name: httpd
+        state: started
+
+
+
+
+

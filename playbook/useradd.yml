@@ -1,0 +1,13 @@
+---
+- hosts: nodes
+  become: yes
+  vars_files:
+          - user_list.yml
+
+  tasks:
+  - name: add user
+    user:
+      name: "{{ item }}"
+      password: redhat@123
+      state: present
+    loop: "{{ users }}"

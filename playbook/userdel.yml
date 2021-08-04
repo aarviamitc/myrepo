@@ -1,0 +1,15 @@
+---
+- hosts: nodes
+  become: yes
+
+  vars_files:
+  - user_list.yml
+
+
+  tasks:
+  - name: Delete users and its home directories
+    user:
+      name: "{{ item }}"
+      state: absent
+      remove: yes
+    loop: "{{ users }}"

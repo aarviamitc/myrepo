@@ -1,0 +1,7 @@
+---
+- name: Roles to configure apache
+  hosts: nodes
+  become: yes
+
+  roles:
+  - apache

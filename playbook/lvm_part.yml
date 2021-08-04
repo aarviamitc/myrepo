@@ -1,0 +1,31 @@
+---
+- hosts: nodes
+  become: yes
+  vars_files:
+          - lv_var.yml
+
+
+  tasks:
+     - name: Create PV and VG
+       lvg:
+         vg: "{{vg_name}}"
+         pvs: "{{pv_name}}"
+
+
+     - name: Create LV
+       lvol:
+          vg: "{{vg_name}}"
+          lv: "{{lv_name}}"
+          size: 4G
+
+     - name: Format the lvm
+       filesystem:
+               fstype: "{{fs_type}}"
+               dev: /dev/{{vg_name}}/{{lv_name}}
+
+     - name: Mount the partition
+       mount:
+          name: "{{mount_point}}"
+          src: /dev/{{vg_name}}/{{lv_name}}
+          fstype: "{{fs_type}}"
+          state: mounted

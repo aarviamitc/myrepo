@@ -1,0 +1,12 @@
+---
+- name: template file creation
+  hosts: nodes
+  vars:
+          - var1: Har Har Mahadev
+
+  tasks:
+          - template:
+                  src: example2.j2
+                  dest: /tmp/result.txt
+                  #when: inventory_hostname == 'node1.linux.com'
+

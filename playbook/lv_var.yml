@@ -1,0 +1,7 @@
+---
+vg_name: ansible_vg
+lv_name: ansible_lv
+pv_name: /dev/sdb
+fs_type: ext4
+
+mount_point: /mnt/ansible

@@ -1,0 +1,14 @@
+{{ ansible_managed }}
+This host's hostname is: {{ ansible_hostname }}
+It's IP address is: {{ ansible_default_ipv4.address }}
+It's memory size is: {{ ansible_memtotal_mb }}
+{% if ansible_memtotal_mb > 10000 %}
+The memory size is enough
+{% else %}
+The memory size is not sufficient
+{% endif %}
+The plabook_variable is: {{ var1 }}
+{% for host in groups['nodes'] %}
+{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ hostvars[host]['ansible_facts']['hostname'] }}
+{% endfor %}
+

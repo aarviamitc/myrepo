@@ -1,0 +1,17 @@
+---
+- hosts: nodes
+  become: yes
+  vars:
+     username: "{{ user_name }}"
+
+  tasks:
+  - name: Create user using extra variable
+    user:
+       name: "{{ user_name }}"
+       state: present
+    register: output
+
+  - debug:
+          msg: "The user created is {{ output.name }}"
+
+

@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  vars_files:
+          - aws_cred.yml
+
+
+  tasks:
+  - name: Lanching EC2 instance
+    ec2:
+      key_name: "{{ name_key }}"
+      aws_access_key: "{{ access_key }}"
+      aws_secret_key: "{{ secret_key }}"
+      region: us-east-1
+      instance_type: t2.micro
+      image: ami-09e67e426f25ce0d7
+      wait: yes
+      count: 1
+      instance_tags:
+              Name: ubuntu

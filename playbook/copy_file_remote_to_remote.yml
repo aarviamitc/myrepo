@@ -1,0 +1,19 @@
+---
+- name: Copy file from one host to another host.
+  hosts: nodes
+  become: yes
+
+  tasks:
+  - name: fetch file from remote to localhost
+    fetch:
+       src: /mnt/ansible_txt
+       dest: /tmp/
+       flat: yes
+    when: "{{ inventory_hostname == 'node1.linux.com' }}"
+ 
+  - name: copy file from localhost to remote server.
+    copy:
+       src: /tmp/ansible_txt
+       dest: /mnt/
+    when: "{{ inventory_hostname == 'node2.linux.com' }}"
+
