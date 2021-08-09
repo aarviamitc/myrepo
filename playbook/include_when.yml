@@ -1,0 +1,10 @@
+---
+- hosts: nodes
+  tasks:
+  - include_vars: var-Debian.yml
+    when: ansible_os_family == 'Debai'
+
+  - include_vars: var-Redhat.yml
+    when: ansible_os_family == 'RedHat'
+
+  - debug: var=redis_package

@@ -1,0 +1,23 @@
+---
+- hosts: nodes
+  become: yes
+
+  tasks:
+  - name: search file
+    find:
+     path: /tmp/ansible
+     patterns: '*.log'
+    register: find_out
+
+
+  - name: Archive the files
+    archive:
+        path: "{{ files_to_archive }}"
+        dest:  /tmp/files.tar
+        format: tar
+    vars:
+    - files_to_archive: "{{ find_out.files | map(attribute='path') | list }}"
+    register: arch_out
+
+  - debug: var=arch_out
+
