@@ -1,0 +1,15 @@
+---
+- hosts: win
+
+  tasks:
+  - name: create file in windows machine
+    win_file:
+            path: D:\ansible\ansible.txt
+            state: touch
+
+  - name: Write content in file
+    win_lineinfile:
+            path: D:\ansible\ansible.txt
+            line: "Hi..! this is Windows node"
+
+

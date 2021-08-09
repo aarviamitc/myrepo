@@ -1,0 +1,12 @@
+---
+- hosts: win
+
+  tasks:
+  - name: Find file on windows system
+    win_find:
+      path: D:\ansible\
+      recurse: yes
+    register: find_out
+
+
+  - debug: var=find_out

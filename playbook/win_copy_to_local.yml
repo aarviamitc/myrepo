@@ -1,0 +1,9 @@
+---
+- hosts: win
+
+  tasks:
+          - name: Copy file from windows to local system
+            fetch:
+                    src: D:\ansible\ansible.txt
+                    dest: /tmp/ansible.txt
+                    flat: yes

@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+          - copy:
+                  dest: /etc/issue
+                  content: "{{ item.con }}"
+            when: inventory_hostname in groups[item.grp]
+            loop:
+                    - con: "Development"
+                      grp: "nodes"
+                    - con: "Test"
+                      grp: "client"     
